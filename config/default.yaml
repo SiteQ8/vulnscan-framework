@@ -1,0 +1,77 @@
+# VulnScan Framework Configuration
+# Copy to config/local.yaml and customize for your environment
+
+scan:
+  # Default number of threads for concurrent operations
+  threads: 50
+
+  # Default timeout for HTTP requests and socket connections (seconds)
+  timeout: 10
+
+  # Crawl depth for web scanner
+  depth: 3
+
+  # Delay between requests (seconds) — 0 for no rate limiting
+  rate_limit: 0
+
+  # Verify SSL certificates (set true in production environments)
+  verify_ssl: false
+
+  # Default port range for port scanning
+  ports: "1-1000"
+
+output:
+  # Default report format: html, json, pdf, all
+  format: html
+
+  # Output directory for reports
+  directory: reports
+
+  # Verbose output
+  verbose: false
+
+web_scanner:
+  # Modules to run by default
+  # Options: sqli, xss, lfi, rce, ssrf, xxe, csrf, headers, redirect, idor
+  default_modules:
+    - sqli
+    - xss
+    - lfi
+    - rce
+    - ssrf
+    - xxe
+    - csrf
+    - headers
+    - redirect
+    - idor
+
+  # Maximum URLs to crawl per scan
+  max_crawl_urls: 200
+
+  # Custom User-Agent string
+  user_agent: "VulnScan/1.0 (Security Testing Framework)"
+
+ml:
+  # Path to trained ML model
+  model_path: models/vuln_predictor.pkl
+
+  # Path to training data CSV
+  training_data: data/training_data.csv
+
+  # Minimum confidence threshold for predictions (0.0 - 1.0)
+  confidence_threshold: 0.5
+
+recon:
+  # Number of threads for subdomain enumeration
+  subdomain_threads: 20
+
+  # Enable Google dorking helpers (informational only)
+  enable_dorking: false
+
+# Proxy settings (e.g., Burp Suite integration)
+# proxy: http://127.0.0.1:8080
+
+# Authentication headers for protected targets
+# auth_headers:
+#   Authorization: "Bearer YOUR_TOKEN"
+#   Cookie: "session=YOUR_SESSION"
